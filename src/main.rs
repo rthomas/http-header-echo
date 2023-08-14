@@ -16,7 +16,7 @@ async fn hello_world(req: Request<Body>) -> Result<Response<Body>, Infallible> {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let port = std::option_env!("PORT").unwrap_or("8080");
     println!("using port: {port}");
-    let addr = SocketAddr::from(([127, 0, 0, 1], port.parse()?));
+    let addr = SocketAddr::from(([0, 0, 0, 0], port.parse()?));
 
     let make_svc = make_service_fn(|_conn| async { Ok::<_, Infallible>(service_fn(hello_world)) });
 
